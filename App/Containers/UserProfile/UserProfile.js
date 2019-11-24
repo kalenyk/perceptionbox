@@ -2,8 +2,8 @@ import React from 'react';
 import {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
-import {FlatList,List} from 'react-native';
-import { Container, Header, Card,Left,Icon,Button, Text } from 'native-base';
+import {FlatList} from 'react-native';
+import { Container, Header,Left,Button, Text } from 'native-base';
 import ListItem from 'App/Components/ListItem';
 
 export default function UserProfile({
@@ -97,7 +97,7 @@ export default function UserProfile({
         <Container>
             <Header>
                 <Left>
-                    <Button transparent onPress={()=>navigation.goBack()}>
+                    <Button onPress={()=>navigation.goBack()}>
                         <Text>Back</Text>
                     </Button>
                 </Left>
@@ -108,6 +108,7 @@ export default function UserProfile({
                 renderItem={({item,index}) => {
                     return (<ListItem item={item} index={index}/>)
                 }}
+                keyExtractor={(item, index) => index.toString()}
             />
         </Container>
     )
@@ -119,12 +120,12 @@ UserProfile.propTypes = {
     getPlanet: PropTypes.func,
     planets: PropTypes.object,
     homeworldName: PropTypes.string,
-    vehicleIds: PropTypes.Array,
+    vehicleIds: PropTypes.array,
     getVehicle: PropTypes.func,
     vehicles: PropTypes.object,
     films: PropTypes.object,
     filmIds: PropTypes.array,
-    vehiclesData: PropTypes.object,
-    filmsData: PropTypes.object,
+    vehiclesData: PropTypes.array,
+    filmsData: PropTypes.array,
     getFilm: PropTypes.func,
 }
